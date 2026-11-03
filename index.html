@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4eee5">
+<title>A Little Place Called Us</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+
+:root {
+  --paper: #f4eee5;
+  --ink: #39352f;
+  --muted: #8b8175;
+  --rose: #b77d72;
+  --line: #dfd5c9;
+  --card: #fbf8f2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.65;
+}
+
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .16;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+  z-index: 5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.serif {
+  font-family: 'Playfair Display', serif;
+}
+
+.wrap {
+  width: min(920px, 90%);
+  margin: auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  font-size: 12px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+.hero {
+  min-height: 80vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 65px 0 85px;
+  position: relative;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+
+h1 {
+  font: 500 clamp(48px, 10vw, 88px)/1.05 'Playfair Display', serif;
+  letter-spacing: -.045em;
+  margin: 22px 0 18px;
+}
+
+.hero p {
+  max-width: 430px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.names {
+  font: italic 20px 'Playfair Display', serif;
+  margin-top: 25px;
+}
+
+.enter {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 35px;
+  border: 1px solid #b9aa9a;
+  padding: 12px 21px;
+  border-radius: 99px;
+  font-size: 12px;
+  letter-spacing: .08em;
+  transition: .25s;
+}
+
+.enter:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.tiny {
+  position: absolute;
+  bottom: 24px;
+  color: #a99c8e;
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.section {
+  padding: 76px 0;
+  border-top: 1px solid var(--line);
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.kicker {
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+
+h2 {
+  font: 500 clamp(32px, 6vw, 48px)/1.15 'Playfair Display', serif;
+  margin: 9px 0;
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.intro-card {
+  background: var(--card);
+  padding: 34px clamp(22px, 6vw, 58px);
+  border: 1px solid var(--line);
+  text-align: center;
+  max-width: 690px;
+  margin: auto;
+  box-shadow: 0 12px 40px #5b46350b;
+}
+
+.intro-card p {
+  font: italic 21px/1.6 'Playfair Display', serif;
+  margin: 0;
+}
+
+.intro-card small {
+  display: block;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+
+.timeline {
+  max-width: 650px;
+  margin: auto;
+  position: relative;
+}
+
+.timeline:before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: var(--line);
+}
+
+.memory {
+  position: relative;
+  padding: 0 0 30px 48px;
+}
+
+.memory:before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 7px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--rose);
+  box-shadow: 0 0 0 5px var(--paper);
+}
+
+.date {
+  font-size: 10px;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+
+.memory h3 {
+  font: 500 22px 'Playfair Display', serif;
+  margin: 5px 0;
+}
+
+.memory p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.photo {
+  background: #e8dfd3;
+  aspect-ratio: 4/5;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 15px;
+  color: #8b7e70;
+  font-size: 11px;
+}
+
+.photo:nth-child(2) {
+  transform: translateY(18px);
+}
+
+.photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo span {
+  z-index: 1;
+  background: #f4eee5cc;
+  padding: 7px 10px;
+}
+
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.letter {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 20px;
+  text-align: left;
+  cursor: pointer;
+  min-height: 115px;
+  transition: .2s;
+}
+
+.letter:hover {
+  transform: translateY(-3px);
+  border-color: #b99b8e;
+}
+
+.letter .icon {
+  color: var(--rose);
+  font-size: 18px;
+}
+
+.letter h3 {
+  font: 500 19px 'Playfair Display', serif;
+  margin: 5px 0;
+}
+
+.letter small {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.letter-content {
+  display: none;
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.letter.open .letter-content {
+  display: block;
+}
+
+.note-box {
+  max-width: 590px;
+  margin: auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 30px;
+  text-align: center;
+}
+
+.note-box p {
+  font: italic 22px/1.5 'Playfair Display', serif;
+  min-height: 70px;
+}
+
+.note-box button {
+  border: 0;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 99px;
+  padding: 11px 18px;
+  font: 12px 'DM Sans';
+  cursor: pointer;
+}
+
+.secret {
+  max-width: 590px;
+  margin: 28px auto 0;
+  text-align: center;
+}
+
+.secret button {
+  background: transparent;
+  border: 1px solid var(--line);
+  padding: 12px 18px;
+  border-radius: 99px;
+  color: var(--muted);
+  font: 12px 'DM Sans';
+  cursor: pointer;
+}
+
+.secret p {
+  display: none;
+  background: #eee5da;
+  padding: 20px;
+  margin: 15px 0 0;
+  font: italic 19px/1.6 'Playfair Display', serif;
+}
+
+.secret.open p {
+  display: block;
+}
+
+.footer {
+  text-align: center;
+  padding: 60px 0 45px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.footer .heart {
+  color: var(--rose);
+  font-size: 18px;
+}
+
+.footer .serif {
+  font-size: 22px;
+  color: var(--ink);
+}
+
+@media(max-width:600px) {
+  .nav { padding: 18px 0; }
+  .nav .links { display: none; }
+  .hero { min-height: 76vh; }
+  .section { padding: 60px 0; }
+  .photo-grid { gap: 8px; }
+  .photo { font-size: 9px; padding: 7px; }
+  .letter-grid { grid-template-columns: 1fr; }
+  .letter { min-height: unset; }
+  .intro-card p { font-size: 19px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a class="brand" href="#">f × e</a>
+    <div class="links">A LITTLE PLACE CALLED US</div>
+    <span>♡</span>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">a tiny corner of the universe</div>
+      <h1>A Little<br><em>Place Called Us.</em></h1>
+      <p>Di antara banyak hal yang terjadi di dunia, ada satu bagian kecil yang selalu ingin aku simpan: cerita tentang kita.</p>
+      <div class="names">Fall <span style="color:var(--rose)">&</span> Eris</div>
+      <a class="enter" href="#our-story">ENTER OUR LITTLE WORLD <span>↘</span></a>
+    </div>
+    <div class="tiny">made with a little bit of love · scroll slowly</div>
+  </header>
+
+  <main>
+    <section class="section" id="our-story">
+      <div class="section-head">
+        <div class="kicker">01 / a note for you</div>
+        <h2>To my favorite person.</h2>
+        <p class="sub">Satu halaman kecil, untuk seseorang yang bikin hari-hari biasa terasa sedikit berbeda.</p>
+      </div>
+      <div class="intro-card">
+        <p>“Aku nggak tahu nanti cerita kita bakal sejauh apa. Tapi untuk sekarang, aku senang karena di antara banyak kemungkinan, aku bisa kenal dan jalan bareng kamu.”</p>
+        <small>— FROM FALL, WITH LOVE</small>
+      </div>
+    </section>
+
+    <section class="section" id="memories">
+      <div class="section-head">
+        <div class="kicker">02 / little moments</div>
+        <h2>Our memories.</h2>
+        <p class="sub">Hal-hal sederhana yang mungkin terlihat biasa buat orang lain, tapi punya tempat sendiri buat kita.</p>
+      </div>
+      <div class="timeline">
+        <article class="memory">
+          <div class="date">10 October 2026 · the beginning</div>
+          <h3>Hari pertama cerita kita.</h3>
+          <p>Awal dari sesuatu yang sekarang jadi salah satu bagian favorit dalam hariku.</p>
+        </article>
+        <article class="memory">
+          <div class="date">A little everyday moment</div>
+          <h3>Our after-work / after-school stops.</h3>
+          <p>Berhenti sebentar, makan bareng, ngobrol tentang hari ini. Sesederhana itu, tapi aku suka.</p>
+        </article>
+        <article class="memory">
+          <div class="date">More to come</div>
+          <h3>And the story goes on...</h3>
+          <p>Masih banyak tempat, cerita, dan momen yang belum kita temui. Semoga kita sempat mengumpulkannya satu-satu.</p>
+        </article>
+      </div>
+      <div class="photo-grid">
+        <div class="photo"><span>your favorite photo goes here</span></div>
+        <div class="photo"><span>one ordinary, lovely day</span></div>
+        <div class="photo"><span>a memory to keep</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="letters">
+      <div class="section-head">
+        <div class="kicker">03 / little letters</div>
+        <h2>Open when you need it.</h2>
+        <p class="sub">Pilih satu surat. Nggak harus dibuka sekaligus, simpan aja buat kapan pun kamu butuh.</p>
+      </div>
+      <div class="letter-grid">
+        <article class="letter" onclick="this.classList.toggle('open')">
+          <div class="icon">✉</div>
+          <small>open when you miss me</small>
+          <h3>Kalau kamu kangen.</h3>
+          <div class="letter-content">Kalau bisa, sekarang aku pengin ada di dekat kamu. Tapi kalau belum bisa, anggap halaman kecil ini sebagai peluk dari jauh. Jangan lupa jaga diri, ya. Nanti kita ketemu lagi.</div>
+        </article>
+        <article class="letter" onclick="this.classList.toggle('open')">
+          <div class="icon">✉</div>
+          <small>open when you're tired</small>
+          <h3>Kalau harimu berat.</h3>
+          <div class="letter-content">Kamu nggak harus selalu kuat atau selalu baik-baik aja. Istirahat dulu kalau capek. Aku mungkin nggak selalu punya jawaban, tapi aku mau dengerin kamu.</div>
+        </article>
+        <article class="letter" onclick="this.classList.toggle('open')">
+          <div class="icon">✉</div>
+          <small>just because</small>
+          <h3>Hal yang aku suka dari kamu.</h3>
+          <div class="letter-content">Aku suka caramu antusias cerita, hal-hal kecil yang kamu perhatiin, dan caramu bikin momen sederhana jadi terasa menyenangkan. Mungkin kamu nggak sadar, tapi itu berarti buat aku.</div>
+        </article>
+        <article class="letter" onclick="this.classList.toggle('open')">
+          <div class="icon">✉</div>
+          <small>a promise</small>
+          <h3>Untuk hari-hari nanti.</h3>
+          <div class="letter-content">Aku nggak janji bakal selalu sempurna. Tapi aku mau terus belajar jadi seseorang yang bisa diajak tumbuh, ngobrol, ketawa, dan saling ngerti. Pelan-pelan, ya.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="little-things">
+      <div class="section-head">
+        <div class="kicker">04 / random sweetness</div>
+        <h2>Our little things.</h2>
+        <p class="sub">Kadang hal kecil juga layak diingat.</p>
+      </div>
+      <div class="note-box">
+        <div class="kicker">a tiny reminder</div>
+        <p id="randomNote">Aku senang bisa kenal kamu, bahkan di hari-hari yang biasa aja.</p>
+        <button onclick="newNote()">another little reminder ↗</button>
+      </div>
+      <div class="secret">
+        <button onclick="this.parentElement.classList.toggle('open')">psst... there's something for you ♡</button>
+        <p>Kalau suatu hari kamu buka ini lagi, semoga kita masih punya banyak alasan untuk tersenyum. Terima kasih sudah jadi bagian dari ceritaku, Eris.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="heart">♡</div>
+    <div class="serif">to be continued...</div>
+    <p>made for Eris, by Fall · 10.10.2026</p>
+    <p>somewhere between ordinary days and forever memories.</p>
+  </footer>
+</div>
+
+<script>
+const notes = [
+  "Aku suka ketika kamu cerita banyak hal, bahkan hal random sekalipun.",
+  "Semoga hari ini ada satu hal kecil yang bikin kamu senyum.",
+  "Kamu nggak perlu jadi siapa-siapa selain dirimu sendiri.",
+  "Terima kasih sudah hadir dan bikin hari-hariku punya cerita baru.",
+  "Kalau hari ini melelahkan, jangan lupa kasih waktu buat diri sendiri.",
+  "Aku masih pengin mengumpulkan banyak cerita sederhana bareng kamu.",
+  "You're one of my favorite parts of this little life."
+];
+
+function newNote() {
+  const el = document.getElementById('randomNote');
+  let next;
+  do {
+    next = notes[Math.floor(Math.random() * notes.length)];
+  } while (next === el.textContent);
+  el.textContent = next;
+}
+</script>
+</body>
+</html>
